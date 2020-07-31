@@ -1,16 +1,21 @@
 import React from "react";
-import { Router, Route, Switch } from "react-router-dom";
-import history from "../history";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import DashBoard from "./DashBoard";
+import CreateLog from "./CreateLog";
 
 class App extends React.Component {
   render() {
     return (
-      <Router history={history}>
-        <Switch>
-          <Route path="/" exact component={DashBoard} />
-        </Switch>
-      </Router>
+      <div>
+        <BrowserRouter>
+          <div>
+            <Switch>
+              <Route path="/" exact component={DashBoard} />
+              <Route path="/createlog" exact component={CreateLog} />
+            </Switch>
+          </div>
+        </BrowserRouter>
+      </div>
     );
   }
 }
