@@ -1,0 +1,37 @@
+.Gogo {
+  background-color: gold;
+}
+
+textarea {
+  resize: none;
+}
+
+.mylabel {
+  display: block;
+  margin: 0 0 0.28571429rem 0;
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 0.92857143em;
+  font-weight: 700;
+  text-transform: none;
+}
+
+.input-error {
+  background-color: #fff6f6;
+  border-color: #e0b4b4;
+  color: #9f3a38;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.addmargin {
+  margin-bottom: 1em;
+}
+
+.ui.secondary.segment.headsegment {
+  padding: 0.5em 1em;
+  background: #d4d4d5;
+}
+
+#transferedforsegment {
+  height: 435px;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import DashBoard from "./DashBoard";
-import CreateLog from "./CreateLog";
+import CreateLog from "./createLog/CreateLog";
 
 class App extends React.Component {
   render() {
