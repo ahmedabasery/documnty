@@ -19,11 +19,10 @@ class CreateLogForm extends React.Component {
       return (
         <div
           key={page.name}
-          className={`item ${
-            page.name === this.state.activePage.name ? "active" : ""
+          className={`item my-pointer${
+            page.name === this.state.activePage.name ? " active" : ""
           }`}
           onClick={() => this.setState({ activePage: page })}
-          style={{ cursor: "pointer" }}
         >
           {page.name}
         </div>
@@ -59,11 +58,30 @@ class CreateLogForm extends React.Component {
   }
 }
 
-const validate = (formValues) => {
+const form_names = [
+  "general_delivery_trackNum",
+  "general_delivery_via",
+  "general_for_other",
+  "general_from_address",
+  "general_from_company",
+  "general_from_transBy",
+  "general_to_address",
+  "general_to_att",
+  "general_to_company",
+];
+
+const validate = (formValues, { setEH }) => {
   const error = {};
-  if (!formValues.general) {
-    error.general = "Error";
-  }
+  let E = false;
+  //mandtory
+  form_names.forEach((name) => {
+    if (!formValues[name]) {
+      error[name] = `${name} is required`;
+      E = true;
+    }
+  });
+  setEH(E, error);
+  return error;
 };
 
 export default reduxForm({

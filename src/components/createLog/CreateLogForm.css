@@ -35,3 +35,11 @@ textarea {
 #transferedforsegment {
   height: 435px;
 }
+
+#hovered:hover {
+  background-color: #80808021;
+}
+
+.my-pointer {
+  cursor: pointer;
+}
