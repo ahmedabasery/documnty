@@ -30,7 +30,7 @@ class GeneralPage extends React.Component {
       return (
         <Field
           key={chB.value}
-          name={`general.for.${chB.value}`}
+          name={`general_for_${chB.value}`}
           component={CheckBox}
           label={chB.label}
         />
@@ -47,21 +47,21 @@ class GeneralPage extends React.Component {
                 <div className="column">
                   <HeaderSegment header="From">
                     <Field
-                      name="general.from.transBy"
+                      name="general_from_transBy"
                       component={DropDown}
                       label="Transmitted By"
                       data={this.names}
                       defaulText="Choose a name"
                     />
                     <Field
-                      name="general.from.company"
+                      name="general_from_company"
                       component={DropDown}
                       label="Company"
                       data={this.names}
                       defaulText="Company .."
                     />
                     <Field
-                      name="general.from.address"
+                      name="general_from_address"
                       component={TextField}
                       label="Address"
                       rows="3"
@@ -71,21 +71,21 @@ class GeneralPage extends React.Component {
                 <div className="column">
                   <HeaderSegment header="To">
                     <Field
-                      name="general.to.att"
+                      name="general_to_att"
                       component={DropDown}
                       label="Attention"
                       data={this.names}
                       defaulText="Choose a name"
                     />
                     <Field
-                      name="general.to.company"
+                      name="general_to_company"
                       component={DropDown}
                       label="Company"
                       data={this.names}
                       defaulText="Company .."
                     />
                     <Field
-                      name="general.to.address"
+                      name="general_to_address"
                       component={TextField}
                       label="Address"
                       rows="3"
@@ -100,7 +100,7 @@ class GeneralPage extends React.Component {
                       <div className="two column row">
                         <div className="column">
                           <Field
-                            name="general.delivery.via"
+                            name="general_delivery_via"
                             component={DropDown}
                             label="Deliverd via"
                             data={this.names}
@@ -109,7 +109,7 @@ class GeneralPage extends React.Component {
                         </div>
                         <div className="column">
                           <Field
-                            name="general.delivery.trackNum"
+                            name="general_delivery_trackNum"
                             component={TextInput}
                             label="Tracking Number"
                             defaultText="Tracking Number"
@@ -128,7 +128,7 @@ class GeneralPage extends React.Component {
                 <div className="column">{this.renderCheckList()}</div>
                 <div className="column">
                   <Field
-                    name="general.for.other"
+                    name="general_for_other"
                     component={TextInput}
                     label="Other reasons"
                   />
@@ -141,7 +141,7 @@ class GeneralPage extends React.Component {
           <div className="column">
             <div className="ui segment">
               <Field
-                name="general.remarks"
+                name="general_remarks"
                 component={TextField}
                 rows="2"
                 label="Remarks"
