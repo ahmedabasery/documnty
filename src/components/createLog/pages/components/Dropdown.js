@@ -1,8 +1,7 @@
 import React from "react";
 import { Dropdown } from "semantic-ui-react";
 
-export default ({ input, meta, data, label, defaulText }) => {
-  //console.log(input);
+export default ({ input, meta, data = [], label, defaulText = "" }) => {
   return (
     <div className="ui form">
       <div className="field">
@@ -14,6 +13,7 @@ export default ({ input, meta, data, label, defaulText }) => {
           selection
           options={data}
           onChange={(e, v) => input.onChange(v.value)}
+          value={input.value}
         />
       </div>
     </div>
