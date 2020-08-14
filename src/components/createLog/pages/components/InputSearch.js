@@ -1,25 +1,23 @@
 import React from "react";
 
-class InputSearch extends React.Component {
-  className = `ui icon input ${
-    this.props.meta.error && this.props.meta.touched ? "error" : ""
+const InputSearch = ({ meta, label, input }) => {
+  const className = `ui icon input ${
+    meta.error && meta.touched ? "error" : ""
   }`;
-  render() {
-    return (
-      <div className="field">
-        <label className="mylabel">{this.props.label}</label>
-        <div className={this.className}>
-          <input
-            {...this.props.input}
-            type="text"
-            placeholder="Search..."
-            autoComplete="off"
-          />
-          <i className="inverted circular search link icon"></i>
-        </div>
+  return (
+    <div className="field">
+      <label className="mylabel">{label}</label>
+      <div className={className}>
+        <input
+          {...input}
+          type="text"
+          placeholder="Search..."
+          autoComplete="off"
+        />
+        <i className="inverted circular search link icon"></i>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default InputSearch;

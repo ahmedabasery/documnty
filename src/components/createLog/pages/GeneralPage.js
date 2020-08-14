@@ -4,9 +4,9 @@ import { Field } from "redux-form";
 
 import TextField from "./components/TextField";
 import HeaderSegment from "./components/HeadedSegment";
-import CheckBox from "./components/CheckBox";
 import DropDown from "./components/Dropdown";
 import TextInput from "./components/TextInput";
+import CheckBoxList from "./components/CheckBoxList";
 
 class GeneralPage extends React.Component {
   checkBoxReasons = [
@@ -25,18 +25,6 @@ class GeneralPage extends React.Component {
     { text: "Dina", value: "1164" },
     { text: "Ali", value: "1178" },
   ];
-  renderCheckList() {
-    return this.checkBoxReasons.map((chB) => {
-      return (
-        <Field
-          key={chB.value}
-          name={`general_for_${chB.value}`}
-          component={CheckBox}
-          label={chB.label}
-        />
-      );
-    });
-  }
   render() {
     return (
       <div className="ui grid">
@@ -125,7 +113,13 @@ class GeneralPage extends React.Component {
           <div className="five wide column">
             <div id="transferedforsegment">
               <HeaderSegment header="Treansfered for" height="403px">
-                <div className="column">{this.renderCheckList()}</div>
+                <div className="column">
+                  <Field
+                    name="general_checkBox"
+                    component={CheckBoxList}
+                    list={this.checkBoxReasons}
+                  />
+                </div>
                 <div className="column">
                   <Field
                     name="general_for_other"
