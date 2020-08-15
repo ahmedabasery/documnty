@@ -1,11 +1,8 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
-
-const reducer = () => {
-  return 5;
-};
+import ErorrReducer from "./ErrorReducer";
 
 export default combineReducers({
   form: formReducer,
-  number: reducer,
+  error: ErorrReducer,
 });

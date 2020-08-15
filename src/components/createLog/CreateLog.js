@@ -1,55 +1,49 @@
 import React from "react";
+import { connect } from "react-redux";
 import CreateLogForm from "./CreateLogForm";
 import ErrorMessages from "./ErrorMessages";
 import Navbar from "./Navbar";
 import "./CreateLogForm.css";
+import { showError, setError, resetError } from "../../actions";
 
 class CreateLog extends React.Component {
   state = {
-    errorSubmission: false,
-    errorHappen: true,
+    showErrorMessage: false,
   };
   setEH = (T, obj) => {
-    if (this._Mounted) {
-      this.errorObject = obj;
-      this.setState({ errorHappen: T });
-      if (!T) this.setState({ errorSubmission: false });
+    if (T) {
+      this.props.setError(Object.values(obj));
+    } else {
+      this.props.resetError();
     }
   };
-  errorObject = { def: "fill all manditory fields" };
-  _Mounted = false;
-  componentDidMount() {
-    this._Mounted = true;
-  }
-  componentWillUnmount() {
-    this._Mounted = false;
-  }
-
   onSubmitPress = () => {
-    console.log("on Sunmission state : ", this.state);
-    if (this.state.errorHappen) {
-      if (!this.state.errorSubmission) {
-        this.setState({ errorSubmission: true });
-      }
-    } else {
-      this.setState({ errorSubmission: false });
+    if (!this.props.error.exist) {
+      this.props.resetError();
       this.props.history.push("/");
     }
+    this.setState({ showErrorMessage: true });
+    this.props.showError();
   };
   render() {
     return (
       <div className="ui container">
         <Navbar onSubmitPress={this.onSubmitPress} />
         <ErrorMessages
-          condition={this.state.errorSubmission && this.errorObject}
-          onCloseClick={() => this.setState({ errorSubmission: false })}
+          condition={this.state.showErrorMessage && this.props.error.show}
+          onCloseClick={() => this.setState({ showErrorMessage: false })}
           label="Apply these fixes first"
-          messages={Object.values(this.errorObject)}
+          messages={this.props.error.list}
         />
         <CreateLogForm setEH={this.setEH} />
       </div>
     );
   }
 }
+const mapStateToProps = ({ error }) => {
+  return { error };
+};
 
-export default CreateLog;
+export default connect(mapStateToProps, { showError, setError, resetError })(
+  CreateLog
+);
