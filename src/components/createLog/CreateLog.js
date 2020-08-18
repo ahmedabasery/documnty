@@ -28,7 +28,10 @@ class CreateLog extends React.Component {
   render() {
     return (
       <div className="ui container">
-        <Navbar onSubmitPress={this.onSubmitPress} />
+        <Navbar
+          onSubmitPress={this.onSubmitPress}
+          onHomePress={this.props.resetError}
+        />
         <ErrorMessages
           condition={this.state.showErrorMessage && this.props.error.show}
           onCloseClick={() => this.setState({ showErrorMessage: false })}
