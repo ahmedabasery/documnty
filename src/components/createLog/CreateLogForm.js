@@ -16,12 +16,13 @@ class CreateLogForm extends React.Component {
 
   renderPageNav() {
     return PC.map((page) => {
+      const tapError = this.props.errorTaps.indexOf(page.name) !== -1;
       return (
         <div
           key={page.name}
           className={`item my-pointer${
             page.name === this.state.activePage.name ? " active" : ""
-          }`}
+          }${tapError ? " errorTap" : ""}`}
           onClick={() => this.setState({ activePage: page })}
         >
           {page.name}
@@ -31,6 +32,7 @@ class CreateLogForm extends React.Component {
   }
   isActive = (pageName) => pageName === this.state.activePage.name;
   render() {
+    console.log(this.props.errorTaps);
     return (
       <form onSubmit={this.props.handleSubmit((fV) => this.props.onSubmit(fV))}>
         <div className=" ui grid">
@@ -58,10 +60,9 @@ class CreateLogForm extends React.Component {
   }
 }
 
-const form_names = [
+const general_form_names = [
   "general_delivery_trackNum",
   "general_delivery_via",
-  "general_for_other",
   "general_from_address",
   "general_from_company",
   "general_from_transBy",
@@ -73,14 +74,16 @@ const form_names = [
 const validate = (formValues, { setEH }) => {
   const error = {};
   let E = false;
+  const errorTaps = [];
   //mandtory
-  form_names.forEach((name) => {
+  general_form_names.forEach((name) => {
     if (!formValues[name]) {
       error[name] = `${name} is required`;
       E = true;
+      if (errorTaps.indexOf(PC[0].name) === -1) errorTaps.push(PC[0].name);
     }
   });
-  setEH(E, error);
+  setEH(E, error, errorTaps);
   return error;
 };
 

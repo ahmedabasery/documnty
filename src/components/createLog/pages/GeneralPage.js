@@ -1,6 +1,7 @@
 import React from "react";
 import "../CreateLogForm.css";
 import { Field } from "redux-form";
+import { connect } from "react-redux";
 
 import TextField from "./components/TextField";
 import HeaderSegment from "./components/HeadedSegment";
@@ -25,6 +26,12 @@ class GeneralPage extends React.Component {
     { text: "Dina", value: "1164" },
     { text: "Ali", value: "1178" },
   ];
+  isSegmentError(list) {
+    for (const i in list) {
+      if (this.props.errorList.indexOf(list[i]) !== -1) return true;
+    }
+    return false;
+  }
   render() {
     return (
       <div className="ui grid">
@@ -33,13 +40,23 @@ class GeneralPage extends React.Component {
             <div className="ui grid">
               <div className="two column row">
                 <div className="column">
-                  <HeaderSegment header="From">
+                  <HeaderSegment
+                    header="From"
+                    showError={
+                      this.isSegmentError([
+                        "general_from_transBy",
+                        "general_from_company",
+                        "general_from_address",
+                      ]) && this.props.error.show
+                    }
+                  >
                     <Field
                       name="general_from_transBy"
                       component={DropDown}
                       label="Transmitted By"
                       data={this.names}
                       defaulText="Choose a name"
+                      showError={this.props.error.show}
                     />
                     <Field
                       name="general_from_company"
@@ -47,23 +64,35 @@ class GeneralPage extends React.Component {
                       label="Company"
                       data={this.names}
                       defaulText="Company .."
+                      showError={this.props.error.show}
                     />
                     <Field
                       name="general_from_address"
                       component={TextField}
                       label="Address"
                       rows="3"
+                      showError={this.props.error.show}
                     />
                   </HeaderSegment>
                 </div>
                 <div className="column">
-                  <HeaderSegment header="To">
+                  <HeaderSegment
+                    header="To"
+                    showError={
+                      this.isSegmentError([
+                        "general_to_att",
+                        "general_to_company",
+                        "general_to_address",
+                      ]) && this.props.error.show
+                    }
+                  >
                     <Field
                       name="general_to_att"
                       component={DropDown}
                       label="Attention"
                       data={this.names}
                       defaulText="Choose a name"
+                      showError={this.props.error.show}
                     />
                     <Field
                       name="general_to_company"
@@ -71,19 +100,29 @@ class GeneralPage extends React.Component {
                       label="Company"
                       data={this.names}
                       defaulText="Company .."
+                      showError={this.props.error.show}
                     />
                     <Field
                       name="general_to_address"
                       component={TextField}
                       label="Address"
                       rows="3"
+                      showError={this.props.error.show}
                     />
                   </HeaderSegment>
                 </div>
               </div>
               <div className="row">
                 <div className="column">
-                  <HeaderSegment header="Delivery">
+                  <HeaderSegment
+                    header="Delivery"
+                    showError={
+                      this.isSegmentError([
+                        "general_delivery_via",
+                        "general_delivery_trackNum",
+                      ]) && this.props.error.show
+                    }
+                  >
                     <div className="ui grid">
                       <div className="two column row">
                         <div className="column">
@@ -93,6 +132,7 @@ class GeneralPage extends React.Component {
                             label="Deliverd via"
                             data={this.names}
                             defaulText="Company .."
+                            showError={this.props.error.show}
                           />
                         </div>
                         <div className="column">
@@ -101,6 +141,7 @@ class GeneralPage extends React.Component {
                             component={TextInput}
                             label="Tracking Number"
                             defaultText="Tracking Number"
+                            showError={this.props.error.show}
                           />
                         </div>
                       </div>
@@ -147,5 +188,10 @@ class GeneralPage extends React.Component {
     );
   }
 }
-
-export default GeneralPage;
+const mapStateToProps = ({ error, form }) => {
+  const list = form.createLogForm.syncErrors
+    ? form.createLogForm.syncErrors
+    : [];
+  return { error, errorList: Object.keys(list) };
+};
+export default connect(mapStateToProps)(GeneralPage);

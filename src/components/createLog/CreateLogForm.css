@@ -29,6 +29,8 @@ textarea {
 
 .ui.secondary.segment.headsegment {
   padding: 0.5em 1em;
+}
+.ui.secondary.segment.headsegment.normal {
   background: #d4d4d5;
 }
 
@@ -42,4 +44,16 @@ textarea {
 
 .my-pointer {
   cursor: pointer;
+}
+
+.ui.form label.error {
+  color: #9f3a38;
+}
+
+.ui.segments.errorsegment {
+  border-color: #e0b4b4;
+}
+
+.ui.item.menu .errorTap {
+  color: #db2828;
 }

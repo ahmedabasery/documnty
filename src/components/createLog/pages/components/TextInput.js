@@ -1,9 +1,11 @@
 import React from "react";
 
-export default ({ input, meta, defaultText, label }) => {
+export default ({ input, meta, defaultText, label, showError = false }) => {
+  const Er = meta.error && showError;
+  const classname = `field${Er ? " error" : ""}`;
   return (
     <div className="ui form ">
-      <div className="field">
+      <div className={classname}>
         <label>{label}</label>
         <div className="ui input">
           <input

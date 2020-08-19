@@ -10,9 +10,9 @@ class CreateLog extends React.Component {
   state = {
     showErrorMessage: false,
   };
-  setEH = (T, obj) => {
+  setEH = (T, obj, errorTaps) => {
     if (T) {
-      this.props.setError(Object.values(obj));
+      this.props.setError(Object.values(obj), errorTaps);
     } else {
       this.props.resetError();
     }
@@ -38,7 +38,10 @@ class CreateLog extends React.Component {
           label="Apply these fixes first"
           messages={this.props.error.list}
         />
-        <CreateLogForm setEH={this.setEH} />
+        <CreateLogForm
+          setEH={this.setEH}
+          errorTaps={this.props.error.show ? this.props.error.taps : []}
+        />
       </div>
     );
   }
