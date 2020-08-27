@@ -17,8 +17,9 @@ class CreateLog extends React.Component {
       this.props.resetError();
     }
   };
-  onSubmitPress = () => {
+  onSubmitPress = (fv) => {
     if (!this.props.error.exist) {
+      console.log("formValues : ", fv);
       this.props.resetError();
       this.props.history.push("/");
     }

@@ -57,3 +57,10 @@ textarea {
 .ui.item.menu .errorTap {
   color: #db2828;
 }
+
+#itemsId {
+  width: 45px;
+}
+#itemsQ {
+  widows: 55px;
+}

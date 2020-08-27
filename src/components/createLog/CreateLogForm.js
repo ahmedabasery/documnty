@@ -2,17 +2,18 @@ import React from "react";
 import { reduxForm } from "redux-form";
 import Tap from "./Tap";
 import GeneralPage from "./pages/GeneralPage";
+import DetailedItemsPage from "./pages/DetailedItemsPage";
 import "./CreateLogForm.css";
 
 const PC = [
   { name: "Generel", Component: <h2>Page 1</h2> },
-  { name: "Page 2", Component: <h2>Page 2</h2> },
+  { name: "Detailed Items", Component: <h2>Page 2</h2> },
   { name: "Page 3", Component: <h2>Page 3</h2> },
   { name: "Page 4", Component: <h2>Page 4</h2> },
 ];
 
 class CreateLogForm extends React.Component {
-  state = { activePage: PC[0] };
+  state = { activePage: PC[1] };
 
   renderPageNav() {
     return PC.map((page) => {
@@ -50,7 +51,9 @@ class CreateLogForm extends React.Component {
             <Tap isActive={this.isActive(PC[0].name)}>
               <GeneralPage />
             </Tap>
-            <Tap isActive={this.isActive(PC[1].name)}>{PC[1].Component}</Tap>
+            <Tap isActive={this.isActive(PC[1].name)}>
+              <DetailedItemsPage />
+            </Tap>
             <Tap isActive={this.isActive(PC[2].name)}>{PC[2].Component}</Tap>
             <Tap isActive={this.isActive(PC[3].name)}>{PC[3].Component}</Tap>
           </div>

@@ -1,3 +1,6 @@
 export const SHOW_ERROR = "SHOW_ERROR";
 export const SET_ERROR = "SET_ERROR";
 export const RESER_ERROR = "RESET_ERROR";
+
+export const ACTIV_NEW_ITEM_DIALOGE = "ACTIV_NEW_ITEM_DIALOGE";
+export const RESET_NEW_ITEM_DIALOGE = "RESET_NEW_ITEM_DIALOGE";
