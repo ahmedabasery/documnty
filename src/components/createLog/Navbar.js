@@ -1,10 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { resetError, showError } from "../../actions";
 
-export default ({
-  onSubmitPress = () => console.log("Error : there is no action assigned here"),
-  onHomePress = () => console.log("Error : there is no action assigned here"),
+const Navbar = ({
+  resetError,
+  showError,
+  showErrorMessage,
+  clForm,
+  historyPush,
 }) => {
+  const onSubmitPress = () => {
+    if (!clForm.syncErrors) {
+      resetError();
+      historyPush("/");
+    }
+    showErrorMessage();
+    showError();
+  };
   return (
     <div className="ui inverted menu">
       <div className="item">
@@ -12,7 +25,7 @@ export default ({
           <div
             className="ui vertical animated button"
             tabIndex="0"
-            onClick={onHomePress}
+            onClick={resetError}
           >
             <div className="hidden content">Back</div>
             <div className="visible content">
@@ -29,3 +42,9 @@ export default ({
     </div>
   );
 };
+
+const mapStateToProps = ({ form }) => {
+  return { clForm: form.createLogForm };
+};
+
+export default connect(mapStateToProps, { resetError, showError })(Navbar);

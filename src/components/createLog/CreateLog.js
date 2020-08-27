@@ -11,20 +11,12 @@ class CreateLog extends React.Component {
     showErrorMessage: false,
   };
 
-  onSubmitPress = () => {
-    if (!this.props.clForm.syncErrors) {
-      this.props.resetError();
-      this.props.history.push("/");
-    }
-    this.setState({ showErrorMessage: true });
-    this.props.showError();
-  };
   render() {
     return (
       <div className="ui container">
         <Navbar
-          onSubmitPress={this.onSubmitPress}
-          onHomePress={this.props.resetError}
+          showErrorMessage={() => this.setState({ showErrorMessage: true })}
+          historyPush={(href) => this.props.history.push(href)}
         />
         <ErrorMessages
           condition={this.state.showErrorMessage && this.props.error.show}
