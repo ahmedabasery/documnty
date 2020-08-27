@@ -11,7 +11,7 @@ const NewItemForm = ({
 }) => {
   const formObj = { onSubmit: handleSubmit((hv) => onSubmit(hv)) };
   return (
-    <Modal {...formObj} includeForm onDismiss={resetNewItemDialoge}>
+    <Modal {...formObj} includeForm onDismiss={() => resetNewItemDialoge()}>
       <PopUpMessage
         title="New Item "
         content={<NewItemFormStr />}
@@ -22,7 +22,6 @@ const NewItemForm = ({
 };
 
 const validate = (formValues) => {
-  console.log(formValues);
   return {};
 };
 export default reduxForm({ validate, form: "newItemForm" })(NewItemForm);

@@ -18,10 +18,11 @@ class DeatiledItem extends React.Component {
   itemProperties = ["name", "q", "ref", "desc", "status", "for"];
   renderNewItemDialoge = () =>
     this.props.newItemDialoge ? (
-      <NewItemForm resetNewItemDialoge={resetNewItemDialoge} />
+      <NewItemForm
+        resetNewItemDialoge={() => this.props.resetNewItemDialoge()}
+      />
     ) : null;
   render() {
-    console.log("rerendered with state : ", this.state);
     return (
       <table className="ui compact celled definition table">
         <thead>

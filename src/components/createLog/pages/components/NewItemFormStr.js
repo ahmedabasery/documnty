@@ -38,7 +38,7 @@ const NewItemFormStr = () => (
           defaultText="status ..."
         />
       </div>
-      <div className="five wide column">
+      <div className="six wide column">
         <Field
           name="item_for"
           component={TextInput}

@@ -4,22 +4,15 @@ import CreateLogForm from "./CreateLogForm";
 import ErrorMessages from "./ErrorMessages";
 import Navbar from "./Navbar";
 import "./CreateLogForm.css";
-import { showError, setError, resetError } from "../../actions";
+import { showError, resetError } from "../../actions";
 
 class CreateLog extends React.Component {
   state = {
     showErrorMessage: false,
   };
-  setEH = (T, obj, errorTaps) => {
-    if (T) {
-      this.props.setError(Object.values(obj), errorTaps);
-    } else {
-      this.props.resetError();
-    }
-  };
-  onSubmitPress = (fv) => {
-    if (!this.props.error.exist) {
-      console.log("formValues : ", fv);
+
+  onSubmitPress = () => {
+    if (!this.props.clForm.syncErrors) {
       this.props.resetError();
       this.props.history.push("/");
     }
@@ -37,20 +30,21 @@ class CreateLog extends React.Component {
           condition={this.state.showErrorMessage && this.props.error.show}
           onCloseClick={() => this.setState({ showErrorMessage: false })}
           label="Apply these fixes first"
-          messages={this.props.error.list}
+          messages={Object.values(
+            this.props.clForm
+              ? this.props.clForm.syncErrors
+                ? this.props.clForm.syncErrors
+                : {}
+              : {}
+          )}
         />
-        <CreateLogForm
-          setEH={this.setEH}
-          errorTaps={this.props.error.show ? this.props.error.taps : []}
-        />
+        <CreateLogForm />
       </div>
     );
   }
 }
-const mapStateToProps = ({ error }) => {
-  return { error };
+const mapStateToProps = ({ error, form }) => {
+  return { error, clForm: form.createLogForm };
 };
 
-export default connect(mapStateToProps, { showError, setError, resetError })(
-  CreateLog
-);
+export default connect(mapStateToProps, { showError, resetError })(CreateLog);
