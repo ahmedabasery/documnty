@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { resetError, showError } from "../../actions";
 
 const Navbar = ({
   resetError,
@@ -10,14 +9,6 @@ const Navbar = ({
   clForm,
   historyPush,
 }) => {
-  const onSubmitPress = () => {
-    if (!clForm.syncErrors) {
-      resetError();
-      historyPush("/");
-    }
-    showErrorMessage();
-    showError();
-  };
   return (
     <div className="ui inverted menu">
       <div className="item">
@@ -35,8 +26,8 @@ const Navbar = ({
         </Link>
       </div>
       <div className="right menu">
-        <div className="item my-pointer" onClick={onSubmitPress} id="hovered">
-          Submit
+        <div className="item my-pointer" id="hovered">
+          Logo
         </div>
       </div>
     </div>
@@ -47,4 +38,4 @@ const mapStateToProps = ({ form }) => {
   return { clForm: form.createLogForm };
 };
 
-export default connect(mapStateToProps, { resetError, showError })(Navbar);
+export default connect(mapStateToProps)(Navbar);

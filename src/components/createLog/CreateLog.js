@@ -4,23 +4,22 @@ import CreateLogForm from "./CreateLogForm";
 import ErrorMessages from "./ErrorMessages";
 import Navbar from "./Navbar";
 import "./CreateLogForm.css";
-import { showError, resetError } from "../../actions";
+import { resetCLErrorMessages } from "../../actions";
 
 class CreateLog extends React.Component {
-  state = {
-    showErrorMessage: false,
+  onSubmit = (fv) => {
+    console.log("form values are", fv);
+    this.props.resetCLErrorMessages();
+    this.props.history.push("/");
   };
 
   render() {
     return (
       <div className="ui container">
-        <Navbar
-          showErrorMessage={() => this.setState({ showErrorMessage: true })}
-          historyPush={(href) => this.props.history.push(href)}
-        />
+        <Navbar />
         <ErrorMessages
-          condition={this.state.showErrorMessage && this.props.error.show}
-          onCloseClick={() => this.setState({ showErrorMessage: false })}
+          condition={this.props.clErrorMessages}
+          onCloseClick={() => this.props.resetCLErrorMessages()}
           label="Apply these fixes first"
           messages={Object.values(
             this.props.clForm
@@ -30,13 +29,16 @@ class CreateLog extends React.Component {
               : {}
           )}
         />
-        <CreateLogForm />
+        <CreateLogForm onSubmit={this.onSubmit} />
       </div>
     );
   }
 }
-const mapStateToProps = ({ error, form }) => {
-  return { error, clForm: form.createLogForm };
+const mapStateToProps = ({ form, clErrorMessages }) => {
+  return {
+    clForm: form.createLogForm ? form.createLogForm : {},
+    clErrorMessages,
+  };
 };
 
-export default connect(mapStateToProps, { showError, resetError })(CreateLog);
+export default connect(mapStateToProps, { resetCLErrorMessages })(CreateLog);

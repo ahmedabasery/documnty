@@ -5,7 +5,6 @@ import Tap from "./Tap";
 import GeneralPage from "./pages/GeneralPage";
 import DetailedItemsPage from "./pages/DetailedItemsPage";
 import { connect } from "react-redux";
-import { resetError } from "../../actions";
 
 const PC = [
   {
@@ -28,12 +27,12 @@ const PC = [
 ];
 
 class CreateLogForm extends React.Component {
-  state = { activePage: PC[1] };
+  state = { activePage: 1 };
 
   renderPageNav = () => {
-    return PC.map((page) => {
+    return PC.map((page, pageN) => {
       const tapError =
-        this.props.mError.show &&
+        this.props.clForm.submitFailed &&
         containsAny(
           page.fieldNamesToCheck,
           Object.keys(
@@ -48,16 +47,16 @@ class CreateLogForm extends React.Component {
         <div
           key={page.name}
           className={`item my-pointer${
-            page.name === this.state.activePage.name ? " active" : ""
+            page.name === PC[this.state.activePage].name ? " active" : ""
           }${tapError ? " errorTap" : ""}`}
-          onClick={() => this.setState({ activePage: page })}
+          onClick={() => this.setState({ activePage: pageN })}
         >
           {page.name}
         </div>
       );
     });
   };
-  isActive = (pageName) => pageName === this.state.activePage.name;
+  isActive = (pageName) => pageName === PC[this.state.activePage].name;
   render() {
     return (
       <form onSubmit={this.props.handleSubmit((fV) => this.props.onSubmit(fV))}>
@@ -82,33 +81,66 @@ class CreateLogForm extends React.Component {
             <Tap isActive={this.isActive(PC[2].name)}>{PC[2].Component}</Tap>
             <Tap isActive={this.isActive(PC[3].name)}>{PC[3].Component}</Tap>
           </div>
+          <div className="row">
+            <div className="ui container">
+              <button
+                className="ui positive small right floated button"
+                type="submit"
+                disabled={this.props.submitting}
+              >
+                Submit
+              </button>
+              <div
+                className={`ui small ${
+                  this.state.activePage === 0 ? "disabled " : ""
+                }left attached button`}
+                onClick={() => {
+                  if (this.state.activePage !== 0)
+                    this.setState({ activePage: this.state.activePage - 1 });
+                }}
+              >
+                Back
+              </div>
+              <div
+                className={`right attached ui small ${
+                  this.state.activePage === PC.length - 1 ? "disabled " : ""
+                }button`}
+                onClick={() => {
+                  if (this.state.activePage !== PC.length - 1)
+                    this.setState({ activePage: this.state.activePage + 1 });
+                }}
+              >
+                Next
+              </div>
+            </div>
+          </div>
         </div>
       </form>
     );
   }
 }
 
-const validate = (formValues, { resetError }) => {
+const validate = (formValues) => {
   const error = {};
-  let E = false;
   //mandtory
   PC[0].fieldNamesToCheck.forEach((name) => {
     if (!formValues[name]) {
       error[name] = `${name} is required`;
-      E = true;
     }
   });
-  if (!E) resetError();
   return error;
 };
 
 const RForm = reduxForm({
   form: "createLogForm",
   validate: validate,
+  onSubmit: (hv) => console.log(hv),
 })(CreateLogForm);
 
-const mapStateToProps = ({ error, form }) => {
-  return { mError: error ? error : {}, clForm: form.createLogForm };
+const mapStateToProps = ({ form }) => {
+  return {
+    clForm: form.createLogForm ? form.createLogForm : {},
+  };
 };
 
-export default connect(mapStateToProps, { resetError })(RForm);
+export default connect(mapStateToProps)(RForm);

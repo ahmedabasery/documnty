@@ -47,7 +47,7 @@ class GeneralPage extends React.Component {
                         "general_from_transBy",
                         "general_from_company",
                         "general_from_address",
-                      ]) && this.props.error.show
+                      ]) && this.props.clForm.submitFailed
                     }
                   >
                     <Field
@@ -56,7 +56,7 @@ class GeneralPage extends React.Component {
                       label="Transmitted By"
                       data={this.names}
                       defaulText="Choose a name"
-                      showError={this.props.error.show}
+                      showError={this.props.clForm.submitFailed}
                     />
                     <Field
                       name="general_from_company"
@@ -64,14 +64,14 @@ class GeneralPage extends React.Component {
                       label="Company"
                       data={this.names}
                       defaulText="Company .."
-                      showError={this.props.error.show}
+                      showError={this.props.clForm.submitFailed}
                     />
                     <Field
                       name="general_from_address"
                       component={TextField}
                       label="Address"
                       rows="3"
-                      showError={this.props.error.show}
+                      showError={this.props.clForm.submitFailed}
                     />
                   </HeaderSegment>
                 </div>
@@ -83,7 +83,7 @@ class GeneralPage extends React.Component {
                         "general_to_att",
                         "general_to_company",
                         "general_to_address",
-                      ]) && this.props.error.show
+                      ]) && this.props.clForm.submitFailed
                     }
                   >
                     <Field
@@ -92,7 +92,7 @@ class GeneralPage extends React.Component {
                       label="Attention"
                       data={this.names}
                       defaulText="Choose a name"
-                      showError={this.props.error.show}
+                      showError={this.props.clForm.submitFailed}
                     />
                     <Field
                       name="general_to_company"
@@ -100,14 +100,14 @@ class GeneralPage extends React.Component {
                       label="Company"
                       data={this.names}
                       defaulText="Company .."
-                      showError={this.props.error.show}
+                      showError={this.props.clForm.submitFailed}
                     />
                     <Field
                       name="general_to_address"
                       component={TextField}
                       label="Address"
                       rows="3"
-                      showError={this.props.error.show}
+                      showError={this.props.clForm.submitFailed}
                     />
                   </HeaderSegment>
                 </div>
@@ -120,7 +120,7 @@ class GeneralPage extends React.Component {
                       this.isSegmentError([
                         "general_delivery_via",
                         "general_delivery_trackNum",
-                      ]) && this.props.error.show
+                      ]) && this.props.clForm.submitFailed
                     }
                   >
                     <div className="ui grid">
@@ -132,7 +132,7 @@ class GeneralPage extends React.Component {
                             label="Deliverd via"
                             data={this.names}
                             defaulText="Company .."
-                            showError={this.props.error.show}
+                            showError={this.props.clForm.submitFailed}
                           />
                         </div>
                         <div className="column">
@@ -141,7 +141,7 @@ class GeneralPage extends React.Component {
                             component={TextInput}
                             label="Tracking Number"
                             defaultText="Tracking Number"
-                            showError={this.props.error.show}
+                            showError={this.props.clForm.submitFailed}
                           />
                         </div>
                       </div>
@@ -188,10 +188,13 @@ class GeneralPage extends React.Component {
     );
   }
 }
-const mapStateToProps = ({ error, form }) => {
+const mapStateToProps = ({ form }) => {
   const list = form.createLogForm.syncErrors
     ? form.createLogForm.syncErrors
     : [];
-  return { error, errorList: Object.keys(list) };
+  return {
+    errorList: Object.keys(list),
+    clForm: form.createLogForm ? form.createLogForm : {},
+  };
 };
 export default connect(mapStateToProps)(GeneralPage);
