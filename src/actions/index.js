@@ -2,6 +2,7 @@ import {
   ACTIV_NEW_ITEM_DIALOGE,
   RESET_NEW_ITEM_DIALOGE,
   RESET_CL_ERROR_MESSAGES,
+  RESET_CL_FORM,
 } from "./types";
 
 export const activeNewItemDialoge = () => {
@@ -13,4 +14,7 @@ export const resetNewItemDialoge = () => {
 
 export const resetCLErrorMessages = () => {
   return { type: RESET_CL_ERROR_MESSAGES };
+};
+export const resetCLForm = () => {
+  return { type: RESET_CL_FORM };
 };

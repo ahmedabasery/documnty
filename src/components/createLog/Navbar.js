@@ -1,14 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { resetCLForm } from "../../actions";
 
-const Navbar = ({
-  resetError,
-  showError,
-  showErrorMessage,
-  clForm,
-  historyPush,
-}) => {
+const Navbar = ({ resetCLForm }) => {
   return (
     <div className="ui inverted menu">
       <div className="item">
@@ -16,7 +11,7 @@ const Navbar = ({
           <div
             className="ui vertical animated button"
             tabIndex="0"
-            onClick={resetError}
+            onClick={resetCLForm}
           >
             <div className="hidden content">Back</div>
             <div className="visible content">
@@ -38,4 +33,4 @@ const mapStateToProps = ({ form }) => {
   return { clForm: form.createLogForm };
 };
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, { resetCLForm })(Navbar);

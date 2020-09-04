@@ -1,4 +1,4 @@
-import { RESET_CL_ERROR_MESSAGES } from "../actions/types";
+import { RESET_CL_ERROR_MESSAGES, RESET_CL_FORM } from "../actions/types";
 
 export default (state = false, action) => {
   switch (action.type) {
@@ -13,6 +13,7 @@ export default (state = false, action) => {
         return false;
       else return state;
     case RESET_CL_ERROR_MESSAGES:
+    case RESET_CL_FORM:
       return false;
     default:
       return state;
