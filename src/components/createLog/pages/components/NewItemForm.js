@@ -1,27 +1,20 @@
 import React from "react";
 import { reduxForm } from "redux-form";
 import NewItemFormStr from "./NewItemFormStr";
-import Modal from "../../../Modal";
-import PopUpMessage from "../../../PopUpMessage";
 
-const NewItemForm = ({
-  handleSubmit,
-  resetNewItemDialoge,
-  onSubmit = () => console.log("no action for submit"),
-}) => {
-  const formObj = { onSubmit: handleSubmit((hv) => onSubmit(hv)) };
+const NewItemForm = ({ handleSubmit }) => {
   return (
-    <Modal {...formObj} includeForm onDismiss={() => resetNewItemDialoge()}>
-      <PopUpMessage
-        title="New Item "
-        content={<NewItemFormStr />}
-        actions={<button className="ui button primary">Add</button>}
-      />
-    </Modal>
+    <form onSubmit={handleSubmit} id="newItemForm">
+      <NewItemFormStr />
+    </form>
   );
 };
 
 const validate = (formValues) => {
   return {};
 };
-export default reduxForm({ validate, form: "newItemForm" })(NewItemForm);
+export default reduxForm({
+  form: "newItemForm",
+  onSubmit: () => console.log("Haaaaah"),
+  validate,
+})(NewItemForm);

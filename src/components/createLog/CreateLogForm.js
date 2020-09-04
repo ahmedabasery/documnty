@@ -59,7 +59,10 @@ class CreateLogForm extends React.Component {
   isActive = (pageName) => pageName === PC[this.state.activePage].name;
   render() {
     return (
-      <form onSubmit={this.props.handleSubmit((fV) => this.props.onSubmit(fV))}>
+      <form
+        onSubmit={this.props.handleSubmit((fV) => this.props.onSubmit(fV))}
+        id="createLogForm"
+      >
         <div className=" ui grid">
           <div className="row">
             <div className="three wide column Gogo "></div>
@@ -86,6 +89,7 @@ class CreateLogForm extends React.Component {
               <button
                 className="ui positive small right floated button"
                 type="submit"
+                form="createLogForm"
                 disabled={this.props.submitting}
               >
                 Submit

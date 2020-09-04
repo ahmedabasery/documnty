@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { activeNewItemDialoge, resetNewItemDialoge } from "../../../actions";
 import ItemsRows from "./components/ItemsRows";
-import NewItemForm from "./components/NewItemForm";
+import NewItemModal from "./components/NewItemModal";
 
 const DUMMY_ITEM = {
   name: "Pencils",
@@ -18,7 +18,7 @@ class DeatiledItem extends React.Component {
   itemProperties = ["name", "q", "ref", "desc", "status", "for"];
   renderNewItemDialoge = () =>
     this.props.newItemDialoge ? (
-      <NewItemForm
+      <NewItemModal
         resetNewItemDialoge={() => this.props.resetNewItemDialoge()}
       />
     ) : null;
