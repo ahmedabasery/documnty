@@ -8,7 +8,7 @@ const NewItemModal = ({ resetNewItemDialoge }) => {
     <Modal onDismiss={() => resetNewItemDialoge()}>
       <PopUpMessage
         title="New Item "
-        content={<NewItemForm />}
+        content={<NewItemForm resetNewItemDialoge={resetNewItemDialoge} />}
         actions={
           <button
             className="ui button primary"

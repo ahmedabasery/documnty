@@ -4,41 +4,50 @@ import CreateLogForm from "./CreateLogForm";
 import ErrorMessages from "./ErrorMessages";
 import Navbar from "./Navbar";
 import "./CreateLogForm.css";
-import { resetCLErrorMessages } from "../../actions";
+import { resetCLErrorMessages, resetNewItemDialoge } from "../../actions";
+import NewItemModal from "./pages/components/NewItemModal";
 
-class CreateLog extends React.Component {
-  onSubmit = (fv) => {
+const CreateLog = ({
+  clForm,
+  clErrorMessages,
+  newItemDialoge,
+  resetCLErrorMessages,
+  resetNewItemDialoge,
+  history,
+}) => {
+  const onFormSubmit = (fv) => {
     console.log("form values are", fv);
-    this.props.resetCLErrorMessages();
-    this.props.history.push("/");
+    resetNewItemDialoge();
+    history.push("/");
   };
 
-  render() {
-    return (
-      <div className="ui container">
-        <Navbar />
-        <ErrorMessages
-          condition={this.props.clErrorMessages}
-          onCloseClick={() => this.props.resetCLErrorMessages()}
-          label="Apply these fixes first"
-          messages={Object.values(
-            this.props.clForm
-              ? this.props.clForm.syncErrors
-                ? this.props.clForm.syncErrors
-                : {}
-              : {}
-          )}
-        />
-        <CreateLogForm onSubmit={this.onSubmit} />
-      </div>
-    );
-  }
-}
-const mapStateToProps = ({ form, clErrorMessages }) => {
+  return (
+    <div className="ui container">
+      <Navbar />
+      <ErrorMessages
+        condition={clErrorMessages}
+        onCloseClick={() => resetCLErrorMessages()}
+        label="Apply these fixes first"
+        messages={Object.values(
+          clForm ? (clForm.syncErrors ? clForm.syncErrors : {}) : {}
+        )}
+      />
+      <CreateLogForm onFormSubmit={onFormSubmit} />
+      {newItemDialoge ? (
+        <NewItemModal resetNewItemDialoge={() => resetNewItemDialoge()} />
+      ) : null}
+    </div>
+  );
+};
+const mapStateToProps = ({ form, clErrorMessages, newItemDialoge }) => {
   return {
     clForm: form.createLogForm ? form.createLogForm : {},
     clErrorMessages,
+    newItemDialoge,
   };
 };
 
-export default connect(mapStateToProps, { resetCLErrorMessages })(CreateLog);
+export default connect(mapStateToProps, {
+  resetCLErrorMessages,
+  resetNewItemDialoge,
+})(CreateLog);
