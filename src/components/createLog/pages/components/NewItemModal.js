@@ -2,13 +2,18 @@ import React from "react";
 import Modal from "../../../Modal";
 import PopUpMessage from "../../../PopUpMessage";
 import NewItemForm from "./NewItemForm";
+import { sendNewItem } from "../../../../actions";
+import { connect } from "react-redux";
 
-const NewItemModal = ({ resetNewItemDialoge }) => {
+const NewItemModal = ({ resetNewItemDialoge, sendNewItem }) => {
+  const onFormSubmit = (formValues) => {
+    sendNewItem(formValues);
+  };
   return (
     <Modal onDismiss={() => resetNewItemDialoge()}>
       <PopUpMessage
         title="New Item "
-        content={<NewItemForm resetNewItemDialoge={resetNewItemDialoge} />}
+        content={<NewItemForm onFormSubmit={onFormSubmit} />}
         actions={
           <button
             className="ui button primary"
@@ -23,4 +28,4 @@ const NewItemModal = ({ resetNewItemDialoge }) => {
   );
 };
 
-export default NewItemModal;
+export default connect(null, { sendNewItem })(NewItemModal);

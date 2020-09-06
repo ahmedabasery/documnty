@@ -1,9 +1,13 @@
 import React from "react";
 import ItemsRows from "./ItemsRows";
+import { itemProperities } from "../../itemsProperitiesConfiguration";
+import NewItemButton from "./NewItemButton";
 
-const itemProperties = ["name", "q", "ref", "desc", "status", "for"];
 class NewItemsTable extends React.Component {
   state = { items: [] };
+  onNewItemArrive = (newItem) => {
+    this.props.input.onChange(JSON.stringify([...this.state.items, newItem]));
+  };
   static getDerivedStateFromProps({ input }) {
     return { items: input.value ? JSON.parse(input.value) : [] };
   }
@@ -29,18 +33,16 @@ class NewItemsTable extends React.Component {
           </tr>
         </thead>
         <tbody>
-          <ItemsRows itemProperties={itemProperties} items={this.state.items} />
+          <ItemsRows
+            itemProperties={itemProperities}
+            items={this.state.items}
+          />
         </tbody>
         <tfoot className="full-width">
           <tr>
             <th></th>
             <th colSpan="7">
-              <div
-                className="ui right floated small primary labeled icon button"
-                onClick={this.props.activeNewItemDialoge}
-              >
-                <i className="plus icon"></i> Add Item
-              </div>
+              <NewItemButton onNewItemArrive={this.onNewItemArrive} />
             </th>
           </tr>
         </tfoot>

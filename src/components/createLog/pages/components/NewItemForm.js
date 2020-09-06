@@ -2,13 +2,9 @@ import React from "react";
 import { reduxForm } from "redux-form";
 import NewItemFormStr from "./NewItemFormStr";
 
-const NewItemForm = ({ handleSubmit, resetNewItemDialoge }) => {
-  const onSubmit = (fv) => {
-    console.log("new submitted item is ", fv);
-    resetNewItemDialoge();
-  };
+const NewItemForm = ({ handleSubmit, onFormSubmit }) => {
   return (
-    <form onSubmit={handleSubmit(onSubmit)} id="newItemForm">
+    <form onSubmit={handleSubmit(onFormSubmit)} id="newItemForm">
       <NewItemFormStr />
     </form>
   );

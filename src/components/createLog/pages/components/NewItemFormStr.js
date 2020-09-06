@@ -2,13 +2,14 @@ import React from "react";
 import { Field } from "redux-form";
 import TextInput from "./TextInput";
 import TextField from "./TextField";
+import itemProperties from "../../itemsProperitiesConfiguration";
 
 const NewItemFormStr = () => (
   <div className="ui grid">
     <div className="row">
       <div className="twelve wide column">
         <Field
-          name="item_name"
+          name={itemProperties.name}
           component={TextInput}
           label="item name"
           defaultText="name"
@@ -16,7 +17,7 @@ const NewItemFormStr = () => (
       </div>
       <div className="four wide column">
         <Field
-          name="item_q"
+          name={itemProperties.q}
           component={TextInput}
           label="item quantity"
           defaultText="quantity"
@@ -24,7 +25,7 @@ const NewItemFormStr = () => (
       </div>
       <div className="five wide column">
         <Field
-          name="item_ref"
+          name={itemProperties.ref}
           component={TextInput}
           label="Reference"
           defaultText="reference"
@@ -32,7 +33,7 @@ const NewItemFormStr = () => (
       </div>
       <div className="five wide column">
         <Field
-          name="item_status"
+          name={itemProperties.status}
           component={TextInput}
           label="Item status"
           defaultText="status ..."
@@ -40,7 +41,7 @@ const NewItemFormStr = () => (
       </div>
       <div className="six wide column">
         <Field
-          name="item_for"
+          name={itemProperties.for}
           component={TextInput}
           label="Reasons"
           defaultText="for ..."
@@ -48,7 +49,7 @@ const NewItemFormStr = () => (
       </div>
       <div className="sixteen wide column">
         <Field
-          name="item_desc"
+          name={itemProperties.desc}
           component={TextField}
           label="Item Description"
           rows="2"
