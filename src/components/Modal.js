@@ -1,26 +1,22 @@
 import React from "react";
 import ReactDom from "react-dom";
+import "./Modal.css";
 
-const Modal = ({ onDismiss, children, includeForm, formObj }) => {
+const Modal = ({ onDismiss, children }) => {
   const M = () => (
-    <div onClick={onDismiss} className="ui dimmer modals visible active">
+    <div
+      onClick={onDismiss}
+      className="ui dimmer modals visible active fix-position"
+    >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="ui standard modal visible active"
+        className="ui standard modal visible active fix-position"
       >
         {children}
       </div>
     </div>
   );
-  const T = () =>
-    includeForm ? (
-      <form {...formObj}>
-        <M />
-      </form>
-    ) : (
-      <M />
-    );
-  return ReactDom.createPortal(<T />, document.querySelector("#modal"));
+  return ReactDom.createPortal(<M />, document.querySelector("#modal"));
 };
 
 export default Modal;

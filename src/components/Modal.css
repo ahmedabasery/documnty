@@ -1,0 +1,6 @@
+.ui.dimmer.modals.visible.active.fix-position {
+  position: fixed;
+}
+.ui.standard.modal.visible.active.fix-position {
+  position: fixed;
+}
