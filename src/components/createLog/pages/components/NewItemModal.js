@@ -2,12 +2,12 @@ import React from "react";
 import Modal from "../../../Modal";
 import PopUpMessage from "../../../PopUpMessage";
 import NewItemForm from "./NewItemForm";
-import { sendNewItem } from "../../../../actions";
+import { reduxChange } from "../../../../actions";
 import { connect } from "react-redux";
 
-const NewItemModal = ({ resetNewItemDialoge, sendNewItem }) => {
+const NewItemModal = ({ resetNewItemDialoge, reduxChange, clFormValues }) => {
   const onFormSubmit = (formValues) => {
-    sendNewItem(formValues);
+    reduxChange(formValues, clFormValues);
   };
   return (
     <Modal onDismiss={() => resetNewItemDialoge()}>
@@ -28,4 +28,8 @@ const NewItemModal = ({ resetNewItemDialoge, sendNewItem }) => {
   );
 };
 
-export default connect(null, { sendNewItem })(NewItemModal);
+const mapStateToProps = ({ form }) => {
+  return { clFormValues: form.createLogForm.values };
+};
+
+export default connect(mapStateToProps, { reduxChange })(NewItemModal);

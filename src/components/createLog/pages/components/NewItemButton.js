@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { resetNewItem, activeNewItemDialoge } from "../../../../actions";
+import { activeNewItemDialoge } from "../../../../actions";
 
 class NewItemButton extends React.Component {
   render() {
@@ -13,18 +13,6 @@ class NewItemButton extends React.Component {
       </div>
     );
   }
-  componentDidUpdate() {
-    if (this.props.newItem) {
-      this.props.onNewItemArrive(this.props.newItem);
-      this.props.resetNewItem();
-    }
-  }
 }
 
-const mapStateToProps = ({ newItem }) => {
-  return { newItem };
-};
-
-export default connect(mapStateToProps, { resetNewItem, activeNewItemDialoge })(
-  NewItemButton
-);
+export default connect(null, { activeNewItemDialoge })(NewItemButton);

@@ -3,8 +3,7 @@ import {
   RESET_NEW_ITEM_DIALOGE,
   RESET_CL_ERROR_MESSAGES,
   RESET_CL_FORM,
-  SEND_NEW_ITEM,
-  RESET_NEW_ITEM,
+  REDUX_CHANGE,
 } from "./types";
 
 export const activeNewItemDialoge = () => {
@@ -21,10 +20,21 @@ export const resetCLForm = () => {
   return { type: RESET_CL_FORM };
 };
 
-export const sendNewItem = (newItem) => {
-  return { type: SEND_NEW_ITEM, payload: newItem };
-};
-
-export const resetNewItem = () => {
-  return { type: RESET_NEW_ITEM };
+export const reduxChange = (newItem, clFormValues) => {
+  console.log({ newItem, clFormValues });
+  const currentNewItems = clFormValues
+    ? clFormValues.newItemsList
+      ? JSON.parse(clFormValues.newItemsList)
+      : []
+    : [];
+  return {
+    type: REDUX_CHANGE,
+    meta: {
+      form: "createLogForm",
+      field: "newItemsList",
+      touch: false,
+      persistentSubmitErrors: false,
+    },
+    payload: JSON.stringify([...currentNewItems, newItem]),
+  };
 };

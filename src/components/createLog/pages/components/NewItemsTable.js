@@ -5,9 +5,6 @@ import NewItemButton from "./NewItemButton";
 
 class NewItemsTable extends React.Component {
   state = { items: [] };
-  onNewItemArrive = (newItem) => {
-    this.props.input.onChange(JSON.stringify([...this.state.items, newItem]));
-  };
   static getDerivedStateFromProps({ input }) {
     return { items: input.value ? JSON.parse(input.value) : [] };
   }
@@ -42,7 +39,7 @@ class NewItemsTable extends React.Component {
           <tr>
             <th></th>
             <th colSpan="7">
-              <NewItemButton onNewItemArrive={this.onNewItemArrive} />
+              <NewItemButton />
             </th>
           </tr>
         </tfoot>
