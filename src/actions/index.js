@@ -21,7 +21,6 @@ export const resetCLForm = () => {
 };
 
 export const reduxChange = (newItem, clFormValues) => {
-  console.log({ newItem, clFormValues });
   const currentNewItems = clFormValues
     ? clFormValues.newItemsList
       ? JSON.parse(clFormValues.newItemsList)

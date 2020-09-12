@@ -1,0 +1,15 @@
+.ui.icon.input.number-input > input {
+  padding-right: 2.67142857em;
+  padding-left: 2.67142857em;
+  text-align: center;
+}
+
+.ui.icon.input.number-input i.icon.minus {
+  right: auto;
+  left: 1px;
+}
+
+.ui.icon.input.number-input > i.icon:not(.link) {
+  pointer-events: auto;
+  cursor: pointer;
+}

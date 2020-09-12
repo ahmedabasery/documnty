@@ -2,6 +2,7 @@ import React from "react";
 import { Field } from "redux-form";
 import TextInput from "./TextInput";
 import TextField from "./TextField";
+import NumberInput from "./NumberInput";
 import itemProperties from "../../itemsProperitiesConfiguration";
 
 const NewItemFormStr = () => (
@@ -18,7 +19,7 @@ const NewItemFormStr = () => (
       <div className="four wide column">
         <Field
           name={itemProperties.q}
-          component={TextInput}
+          component={NumberInput}
           label="item quantity"
           defaultText="quantity"
         />
