@@ -4,8 +4,9 @@ import TextInput from "./TextInput";
 import TextField from "./TextField";
 import NumberInput from "./NumberInput";
 import itemProperties from "../../itemsProperitiesConfiguration";
+import { connect } from "react-redux";
 
-const NewItemFormStr = () => (
+const NewItemFormStr = ({ niForm }) => (
   <div className="ui grid">
     <div className="row">
       <div className="twelve wide column">
@@ -14,6 +15,7 @@ const NewItemFormStr = () => (
           component={TextInput}
           label="item name"
           defaultText="name"
+          showError={niForm.submitFailed}
         />
       </div>
       <div className="four wide column">
@@ -60,4 +62,9 @@ const NewItemFormStr = () => (
   </div>
 );
 
-export default NewItemFormStr;
+const mapStateToProps = ({ form }) => {
+  return {
+    niForm: form.newItemForm ? form.newItemForm : {},
+  };
+};
+export default connect(mapStateToProps)(NewItemFormStr);

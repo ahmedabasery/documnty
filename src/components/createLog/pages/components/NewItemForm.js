@@ -11,7 +11,9 @@ const NewItemForm = ({ handleSubmit, onFormSubmit }) => {
 };
 
 const validate = (formValues) => {
-  return {};
+  const Error = {};
+  if (!formValues.name) Error.name = "name is required";
+  return Error;
 };
 export default reduxForm({
   form: "newItemForm",

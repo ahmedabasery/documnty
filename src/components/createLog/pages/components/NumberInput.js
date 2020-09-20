@@ -45,9 +45,7 @@ class NumberInput extends React.Component {
       this.props.initNumber ? this.props.initNumber : 1
     );
   }
-  render() {
-    return <Component {...this.props} />;
-  }
+  render = () => <Component {...this.props} />;
 }
 
 export default NumberInput;
