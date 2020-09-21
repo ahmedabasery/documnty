@@ -47,4 +47,9 @@ export default [
     checkError: (v) => checkIfNotProvided(v, "Destination company is required"),
     tap: tapsName[0],
   },
+  {
+    name: "newItemsList",
+    tap: tapsName[1],
+    checkError: (v) => checkIfNotProvided(v, "There is no items "),
+  },
 ];
