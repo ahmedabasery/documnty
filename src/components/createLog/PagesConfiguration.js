@@ -1,20 +1,50 @@
-import React from "react";
+const checkIfNotProvided = (v, message = "this value is required") => {
+  if (!v) return message;
+  return false;
+};
+
+export const tapsName = ["General", "Detailed Items", "Page 3", "Page 4"];
 export default [
   {
-    name: "Generel",
-    Component: <h2>Page 1</h2>,
-    fieldNamesToCheck: [
-      "general_delivery_trackNum",
-      "general_delivery_via",
-      "general_from_address",
-      "general_from_company",
-      "general_from_transBy",
-      "general_to_address",
-      "general_to_att",
-      "general_to_company",
-    ],
+    name: "general_delivery_trackNum",
+    checkError: (v) =>
+      checkIfNotProvided(v, "Delivery track Number is required"),
+    tap: tapsName[0],
   },
-  { name: "Detailed Items", Component: <h2>Page 2</h2> },
-  { name: "Page 3", Component: <h2>Page 3</h2> },
-  { name: "Page 4", Component: <h2>Page 4</h2> },
+  {
+    name: "general_delivery_via",
+    checkError: (v) => checkIfNotProvided(v, "Delivery Company is required"),
+    tap: tapsName[0],
+  },
+  {
+    name: "general_from_address",
+    checkError: (v) => checkIfNotProvided(v, "Source address is required"),
+    tap: tapsName[0],
+  },
+  {
+    name: "general_from_company",
+    checkError: (v) => checkIfNotProvided(v, "Source company is required"),
+    tap: tapsName[0],
+  },
+  {
+    name: "general_from_transBy",
+    checkError: (v) => checkIfNotProvided(v, "Source personal is required"),
+    tap: tapsName[0],
+  },
+  {
+    name: "general_to_address",
+    checkError: (v) => checkIfNotProvided(v, "Destination address is required"),
+    tap: tapsName[0],
+  },
+  {
+    name: "general_to_att",
+    checkError: (v) =>
+      checkIfNotProvided(v, "Destination personal is required"),
+    tap: tapsName[0],
+  },
+  {
+    name: "general_to_company",
+    checkError: (v) => checkIfNotProvided(v, "Destination company is required"),
+    tap: tapsName[0],
+  },
 ];

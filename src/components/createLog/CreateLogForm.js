@@ -13,11 +13,9 @@ const CreateLogForm = ({ handleSubmit, onFormSubmit, showNewItemModal }) => {
 
 const validate = (formValues) => {
   const error = {};
-  //mandtory
-  PC[0].fieldNamesToCheck.forEach((name) => {
-    if (!formValues[name]) {
-      error[name] = `${name} is required`;
-    }
+  PC.forEach((field) => {
+    const errorMessage = field.checkError(formValues[field.name]);
+    if (errorMessage) error[field.name] = errorMessage;
   });
   return error;
 };

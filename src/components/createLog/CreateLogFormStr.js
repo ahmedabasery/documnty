@@ -1,5 +1,5 @@
 import React from "react";
-import PC from "./PagesConfiguration";
+import { tapsName } from "./PagesConfiguration";
 import PageNav from "./PageNav";
 import Tap from "./Tap";
 import GeneralPage from "./pages/GeneralPage";
@@ -8,7 +8,7 @@ import DetailedItemsPage from "./pages/DetailedItemsPage";
 export default () => {
   const [activePage, setActivePage] = React.useState(1);
 
-  const isActive = (pageName) => pageName === PC[activePage].name;
+  const isActive = (pageName) => pageName === tapsName[activePage];
   return (
     <div className=" ui grid">
       <div className="row">
@@ -19,22 +19,24 @@ export default () => {
         <div className="one wide column Gogo "></div>
       </div>
       <div className="row">
-        <div className="ui four item menu">
-          <PageNav
-            activePage={activePage}
-            setActivePage={(p) => setActivePage(p)}
-          />
-        </div>
+        <PageNav
+          activePage={activePage}
+          setActivePage={(p) => setActivePage(p)}
+        />
       </div>
       <div className="row">
-        <Tap isActive={isActive(PC[0].name)}>
+        <Tap isActive={isActive(tapsName[0])}>
           <GeneralPage />
         </Tap>
-        <Tap isActive={isActive(PC[1].name)}>
+        <Tap isActive={isActive(tapsName[1])}>
           <DetailedItemsPage />
         </Tap>
-        <Tap isActive={isActive(PC[2].name)}>{PC[2].Component}</Tap>
-        <Tap isActive={isActive(PC[3].name)}>{PC[3].Component}</Tap>
+        <Tap isActive={isActive(tapsName[2])}>
+          <h1>Page 3</h1>
+        </Tap>
+        <Tap isActive={isActive(tapsName[3])}>
+          <h1>Page 4</h1>
+        </Tap>
       </div>
       <div className="row">
         <div className="ui container">
@@ -57,10 +59,11 @@ export default () => {
           </div>
           <div
             className={`right attached ui small ${
-              activePage === PC.length - 1 ? "disabled " : ""
+              activePage === tapsName.length - 1 ? "disabled " : ""
             }button`}
             onClick={() => {
-              if (activePage !== PC.length - 1) setActivePage(activePage + 1);
+              if (activePage !== tapsName.length - 1)
+                setActivePage(activePage + 1);
             }}
           >
             Next
