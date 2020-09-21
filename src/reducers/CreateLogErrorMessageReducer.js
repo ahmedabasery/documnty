@@ -4,7 +4,7 @@ export default (state = false, action) => {
   switch (action.type) {
     case "@@redux-form/SET_SUBMIT_FAILED":
       if (action.meta.form === "createLogForm") return true;
-      else return false;
+      else return state;
     case "@@redux-form/UPDATE_SYNC_ERRORS":
       if (
         action.meta.form === "createLogForm" &&
