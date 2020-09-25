@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Modal from "../../../Modal";
 import PopUpMessage from "../../../PopUpMessage";
 import { changeItemsValue } from "../../../../actions";
+import { DELETE_ITEM } from "../../../../actions/types";
 
 const ItemActions = ({ index, itemsArray, changeItemsValue }) => {
   const [showDeleteModal, setShowDeleteModal] = React.useState(false);
@@ -12,7 +13,7 @@ const ItemActions = ({ index, itemsArray, changeItemsValue }) => {
     else {
       const newItemsArray = itemsArray.filter((item, i) => i !== index);
       const newItemsValue = JSON.stringify(newItemsArray);
-      changeItemsValue(newItemsValue);
+      changeItemsValue(newItemsValue, DELETE_ITEM);
     }
     setShowDeleteModal(false);
   };
