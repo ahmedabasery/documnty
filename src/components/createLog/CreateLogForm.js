@@ -3,10 +3,10 @@ import { reduxForm } from "redux-form";
 import CreateLogFormStr from "./CreateLogFormStr";
 import PC from "./PagesConfiguration";
 
-const CreateLogForm = ({ handleSubmit, onFormSubmit, showNewItemModal }) => {
+const CreateLogForm = ({ handleSubmit, onFormSubmit }) => {
   return (
     <form onSubmit={handleSubmit((fV) => onFormSubmit(fV))} id="createLogForm">
-      <CreateLogFormStr showNewItemModal={showNewItemModal} />
+      <CreateLogFormStr />
     </form>
   );
 };

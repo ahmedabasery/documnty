@@ -62,5 +62,8 @@ textarea {
   width: 45px;
 }
 #itemsQ {
-  widows: 55px;
+  width: 55px;
+}
+#itemActions {
+  width: 82px;
 }

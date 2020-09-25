@@ -37,3 +37,14 @@ export const reduxChange = (newItem, clFormValues) => {
     payload: JSON.stringify([...currentNewItems, newItem]),
   };
 };
+
+export const changeItemsValue = (newValue) => ({
+  type: "@@redux-form/CHANGE",
+  meta: {
+    form: "createLogForm",
+    field: "newItemsList",
+    touch: false,
+    persistentSubmitErrors: false,
+  },
+  payload: newValue === "[]" ? "" : newValue,
+});

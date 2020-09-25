@@ -1,4 +1,5 @@
 import React from "react";
+import ItemActions from "./ItemActions";
 
 export default ({ itemProperties, items }) => {
   //pN is arrow ffunction that return the input number as 3 digit num
@@ -9,7 +10,9 @@ export default ({ itemProperties, items }) => {
       {itemProperties.map((P, pi) => (
         <td key={pi}>{item[P]}</td>
       ))}
-      <td />
+      <td>
+        <ItemActions index={i} />
+      </td>
     </tr>
   ));
 };

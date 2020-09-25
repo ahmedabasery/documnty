@@ -26,7 +26,7 @@ class NewItemsTable extends React.Component {
             <th>Description</th>
             <th>status</th>
             <th>for</th>
-            <th></th>
+            <th id="itemActions" />
           </tr>
         </thead>
         <tbody>
