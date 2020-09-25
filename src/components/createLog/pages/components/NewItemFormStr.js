@@ -16,6 +16,7 @@ const NewItemFormStr = ({ niForm }) => (
           label="item name"
           defaultText="name"
           showError={niForm.submitFailed}
+          autofocus
         />
       </div>
       <div className="four wide column">

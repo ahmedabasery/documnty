@@ -1,6 +1,13 @@
 import React from "react";
 
-export default ({ input, meta, defaultText, label, showError = false }) => {
+export default ({
+  input,
+  meta,
+  defaultText,
+  label,
+  showError = false,
+  autofocus = false,
+}) => {
   const Er = meta.error && showError;
   const classname = `field${Er ? " error" : ""}`;
   return (
@@ -13,6 +20,7 @@ export default ({ input, meta, defaultText, label, showError = false }) => {
             type="text"
             placeholder={defaultText}
             autoComplete="off"
+            autoFocus={autofocus}
           />
         </div>
       </div>
