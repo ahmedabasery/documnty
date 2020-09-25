@@ -3,14 +3,15 @@ import Modal from "../../../Modal";
 import PopUpMessage from "../../../PopUpMessage";
 import NewItemForm from "./NewItemForm";
 import NewItemFormButton from "./NewItemFormButton";
-import { changeItemsValue } from "../../../../actions";
+import { changeItemsValue, resetItemDialoge } from "../../../../actions";
 import { connect } from "react-redux";
-import { ADD_NEW_ITEM } from "../../../../actions/types";
+import { ADD_NEW_ITEM, EDIT_ITEM } from "../../../../actions/types";
 
 const NewItemModal = ({
-  resetNewItemDialoge,
+  resetItemDialoge,
   changeItemsValue,
   clFormValues,
+  newItemDialoge,
 }) => {
   const onFormSubmit = (formValues) => {
     const currentNewItems = clFormValues
@@ -18,22 +19,41 @@ const NewItemModal = ({
         ? JSON.parse(clFormValues.newItemsList)
         : []
       : [];
-    const newItemsValue = JSON.stringify([...currentNewItems, formValues]);
-    changeItemsValue(newItemsValue, ADD_NEW_ITEM);
+    if (newItemDialoge.edit) {
+      currentNewItems[newItemDialoge.index] = formValues;
+      const editedItemsValue = JSON.stringify(currentNewItems);
+      changeItemsValue(editedItemsValue, EDIT_ITEM);
+    } else {
+      const newItemsValue = JSON.stringify([...currentNewItems, formValues]);
+      changeItemsValue(newItemsValue, ADD_NEW_ITEM);
+    }
   };
+  const initialValues = newItemDialoge.edit
+    ? JSON.parse(clFormValues.newItemsList)[newItemDialoge.index]
+    : undefined;
   return (
-    <Modal onDismiss={() => resetNewItemDialoge()}>
+    <Modal onDismiss={() => resetItemDialoge()}>
       <PopUpMessage
-        title="New Item "
-        content={<NewItemForm onFormSubmit={onFormSubmit} />}
+        title={newItemDialoge.edit ? "Edit Item" : "New Item "}
+        content={
+          <NewItemForm
+            onFormSubmit={onFormSubmit}
+            initialValues={initialValues}
+          />
+        }
         actions={<NewItemFormButton />}
       />
     </Modal>
   );
 };
 
-const mapStateToProps = ({ form }) => {
-  return { clFormValues: form.createLogForm.values };
+const mapStateToProps = ({ form, newItemDialoge }) => {
+  return {
+    clFormValues: form.createLogForm.values,
+    newItemDialoge,
+  };
 };
 
-export default connect(mapStateToProps, { changeItemsValue })(NewItemModal);
+export default connect(mapStateToProps, { changeItemsValue, resetItemDialoge })(
+  NewItemModal
+);

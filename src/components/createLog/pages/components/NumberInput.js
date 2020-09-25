@@ -41,9 +41,10 @@ const Component = ({ input, meta, defaultText, label, showError = false }) => {
 };
 class NumberInput extends React.Component {
   componentDidMount() {
-    this.props.input.onChange(
-      this.props.initNumber ? this.props.initNumber : 1
-    );
+    if (!this.props.input.value)
+      this.props.input.onChange(
+        this.props.initNumber ? this.props.initNumber : 1
+      );
   }
   render = () => <Component {...this.props} />;
 }

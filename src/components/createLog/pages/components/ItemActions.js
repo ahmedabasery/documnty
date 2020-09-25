@@ -2,10 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import Modal from "../../../Modal";
 import PopUpMessage from "../../../PopUpMessage";
-import { changeItemsValue } from "../../../../actions";
+import { changeItemsValue, editItem } from "../../../../actions";
 import { DELETE_ITEM } from "../../../../actions/types";
 
-const ItemActions = ({ index, itemsArray, changeItemsValue }) => {
+const ItemActions = ({ index, itemsArray, changeItemsValue, editItem }) => {
   const [showDeleteModal, setShowDeleteModal] = React.useState(false);
   const onDeleteClick = () => {
     if (index >= itemsArray.length)
@@ -24,9 +24,17 @@ const ItemActions = ({ index, itemsArray, changeItemsValue }) => {
           title="Warning"
           content="Are you sure want to delete this item ? "
           actions={
-            <div className="ui negative button" onClick={onDeleteClick}>
-              Delete
-            </div>
+            <>
+              <div className="ui negative button" onClick={onDeleteClick}>
+                Delete
+              </div>
+              <div
+                className="ui button"
+                onClick={() => setShowDeleteModal(false)}
+              >
+                Cancel
+              </div>
+            </>
           }
         />
       </Modal>
@@ -34,7 +42,7 @@ const ItemActions = ({ index, itemsArray, changeItemsValue }) => {
   return (
     <>
       <div className="ui mini icon buttons ">
-        <div className="ui green button">
+        <div className="ui green button" onClick={() => editItem(index)}>
           <i className="edit icon" />
         </div>
         <div className="ui red button" onClick={() => setShowDeleteModal(true)}>
@@ -57,4 +65,6 @@ const mapStateToProps = ({ form }) => {
       : [],
   };
 };
-export default connect(mapStateToProps, { changeItemsValue })(ItemActions);
+export default connect(mapStateToProps, { changeItemsValue, editItem })(
+  ItemActions
+);
