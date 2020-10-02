@@ -14,7 +14,10 @@ const CreateLogForm = ({ handleSubmit, onFormSubmit }) => {
 const validate = (formValues) => {
   const error = {};
   PC.forEach((field) => {
-    const errorMessage = field.checkError(formValues[field.name]);
+    const errorMessage = field.checkError({
+      value: formValues[field.name],
+      formValues,
+    });
     if (errorMessage) error[field.name] = errorMessage;
   });
   return error;

@@ -17,7 +17,18 @@ const names = [
   { text: "Dina", value: "1164" },
   { text: "Ali", value: "1178" },
 ];
-const Acknoeledgement = ({ ack_rece_check, ack_required }) => (
+const isSegmentError = (list, errorList) => {
+  for (const i in list) {
+    if (errorList.indexOf(list[i]) !== -1) return true;
+  }
+  return false;
+};
+const Acknoeledgement = ({
+  ack_rece_check,
+  ack_required,
+  errorList,
+  submitFailed,
+}) => (
   <div className="ui grid continer">
     <div className="row">
       <div className="ten wide column">
@@ -45,23 +56,34 @@ const Acknoeledgement = ({ ack_rece_check, ack_required }) => (
             label="Acknowledged"
           />
           {ack_rece_check && (
-            <HeadedSegment header="Reply details">
+            <HeadedSegment
+              header="Reply details"
+              showError={
+                isSegmentError(
+                  ["ack_rece_date", "ack_rece_by", "ack_rec_company"],
+                  errorList
+                ) && submitFailed
+              }
+            >
               <Field
                 name="ack_rece_date"
                 component={TextInput}
-                label="Date      "
+                label="Date"
+                showError={submitFailed}
               />
               <Field
                 name="ack_rece_by"
                 component={Dropdown}
                 data={names}
                 label="Acknowledged by"
+                showError={submitFailed}
               />
               <Field
                 name="ack_rec_company"
                 component={Dropdown}
                 data={names}
                 label="Company"
+                showError={submitFailed}
               />
             </HeadedSegment>
           )}
@@ -72,19 +94,16 @@ const Acknoeledgement = ({ ack_rece_check, ack_required }) => (
 );
 
 const mapStateToProps = ({ form }) => {
-  const clFormValues = form
-    ? form.createLogForm
-      ? form.createLogForm.values
-        ? form.createLogForm.values
-        : {}
-      : {}
-    : {};
-
+  const clForm = form ? form.createLogForm : {};
+  const clFormValues = clForm.values ? clForm.values : {};
+  const list = clForm.syncErrors ? clForm.syncErrors : [];
   return {
     ack_rece_check: clFormValues.ack_rece_check
       ? clFormValues.ack_rece_check
       : false,
     ack_required: clFormValues.ack_required ? clFormValues.ack_required : false,
+    errorList: Object.keys(list),
+    submitFailed: clForm.submitFailed ? clForm.submitFailed : false,
   };
 };
 
