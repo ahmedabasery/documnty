@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Field } from "redux-form";
-import CheckBox from "./components/CheckBox";
-import CheckBoxAckReq from "./components/CheckBoxAckReq";
-import Dropdown from "./components/Dropdown";
-import HeadedSegment from "./components/HeadedSegment";
-import TextField from "./components/TextField";
-import TextInput from "./components/TextInput";
+import CheckBoxAckReq from "./CheckBoxAckReq";
+import CheckBox from "../../components/CheckBox";
+import Dropdown from "../../components/Dropdown";
+import HeadedSegment from "../../components/HeadedSegment";
+import TextField from "../../components/TextField";
+import TextInput from "../../components/TextInput";
 
 const names = [
   { text: "Ahmed", value: "1111" },

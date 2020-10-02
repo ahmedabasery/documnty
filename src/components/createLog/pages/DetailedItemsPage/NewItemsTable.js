@@ -1,7 +1,7 @@
 import React from "react";
-import ItemsRows from "./ItemsRows";
 import { itemProperities } from "../../itemsProperitiesConfiguration";
 import NewItemButton from "./NewItemButton";
+import ItemsRows from "./ItemsRows";
 
 class NewItemsTable extends React.Component {
   state = { items: [] };

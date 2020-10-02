@@ -1,10 +1,10 @@
 import React from "react";
 import { Field } from "redux-form";
-import TextInput from "./TextInput";
-import TextField from "./TextField";
-import NumberInput from "./NumberInput";
-import itemProperties from "../../itemsProperitiesConfiguration";
 import { connect } from "react-redux";
+import TextInput from "../../components/TextInput";
+import TextField from "../../components/TextField";
+import NumberInput from "../../components/NumberInput";
+import itemProperties from "../../itemsProperitiesConfiguration";
 
 const NewItemFormStr = ({ niForm }) => (
   <div className="ui grid">

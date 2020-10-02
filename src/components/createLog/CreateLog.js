@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import CreateLogForm from "./CreateLogForm";
-import ErrorMessages from "./ErrorMessages";
-import Navbar from "./Navbar";
 import "./CreateLogForm.css";
 import { resetCLErrorMessages, resetItemDialoge } from "../../actions";
-import NewItemModal from "./pages/components/NewItemModal";
+import CreateLogForm from "./CreateLogForm";
+import ErrorMessages from "./components/ErrorMessages";
+import Navbar from "./Navbar";
+import NewItemModal from "./pages/DetailedItemsPage/NewItemModal";
 
 const CreateLog = ({
   clForm,

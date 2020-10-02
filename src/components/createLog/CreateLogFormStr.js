@@ -2,9 +2,9 @@ import React from "react";
 import { tapsName } from "./PagesConfiguration";
 import PageNav from "./PageNav";
 import Tap from "./Tap";
-import GeneralPage from "./pages/GeneralPage";
-import DetailedItemsPage from "./pages/DetailedItemsPage";
-import Acknoeledgement from "./pages/Acknowledgement";
+import GeneralPage from "./pages/GeneralPage/index";
+import DetailedItemsPage from "./pages/DetailedItemsPage/index";
+import Acknoeledgement from "./pages/Acknowledgement/index";
 
 export default () => {
   const [activePage, setActivePage] = React.useState(2);

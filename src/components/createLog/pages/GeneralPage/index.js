@@ -1,13 +1,11 @@
 import React from "react";
-import "../CreateLogForm.css";
 import { Field } from "redux-form";
 import { connect } from "react-redux";
-
-import TextField from "./components/TextField";
-import HeaderSegment from "./components/HeadedSegment";
-import DropDown from "./components/Dropdown";
-import TextInput from "./components/TextInput";
-import CheckBoxList from "./components/CheckBoxList";
+import TextField from "../../components/TextField";
+import HeaderSegment from "../../components/HeadedSegment";
+import DropDown from "../../components/Dropdown";
+import TextInput from "../../components/TextInput";
+import CheckBoxList from "../../components/CheckBoxList";
 
 class GeneralPage extends React.Component {
   checkBoxReasons = [

@@ -1,11 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
+import { changeItemsValue, resetItemDialoge } from "../../../../actions";
+import { ADD_NEW_ITEM, EDIT_ITEM } from "../../../../actions/types";
 import Modal from "../../../Modal";
 import PopUpMessage from "../../../PopUpMessage";
 import NewItemForm from "./NewItemForm";
 import NewItemFormButton from "./NewItemFormButton";
-import { changeItemsValue, resetItemDialoge } from "../../../../actions";
-import { connect } from "react-redux";
-import { ADD_NEW_ITEM, EDIT_ITEM } from "../../../../actions/types";
 
 const NewItemModal = ({
   resetItemDialoge,
