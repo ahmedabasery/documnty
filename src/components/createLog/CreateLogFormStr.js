@@ -4,9 +4,10 @@ import PageNav from "./PageNav";
 import Tap from "./Tap";
 import GeneralPage from "./pages/GeneralPage";
 import DetailedItemsPage from "./pages/DetailedItemsPage";
+import Acknoeledgement from "./pages/Acknowledgement";
 
 export default () => {
-  const [activePage, setActivePage] = React.useState(1);
+  const [activePage, setActivePage] = React.useState(2);
 
   const isActive = (pageName) => pageName === tapsName[activePage];
   return (
@@ -32,7 +33,7 @@ export default () => {
           <DetailedItemsPage />
         </Tap>
         <Tap isActive={isActive(tapsName[2])}>
-          <h1>Page 3</h1>
+          <Acknoeledgement />
         </Tap>
         <Tap isActive={isActive(tapsName[3])}>
           <h1>Page 4</h1>

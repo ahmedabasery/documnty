@@ -39,3 +39,14 @@ export const changeItemsValue = (newValue, source) => ({
     source,
   },
 });
+
+export const resetAckRec = () => ({
+  type: "@@redux-form/CHANGE",
+  meta: {
+    form: "createLogForm",
+    field: "ack_rece_check",
+    touch: false,
+    persistentSubmitErrors: false,
+  },
+  payload: false,
+});
