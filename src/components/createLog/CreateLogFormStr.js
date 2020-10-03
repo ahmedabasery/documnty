@@ -1,13 +1,10 @@
 import React from "react";
-import { tapsName } from "./PagesConfiguration";
+import { tapsName, tapComponent } from "./PagesConfiguration";
 import PageNav from "./PageNav";
 import Tap from "./Tap";
-import GeneralPage from "./pages/GeneralPage/index";
-import DetailedItemsPage from "./pages/DetailedItemsPage/index";
-import Acknoeledgement from "./pages/Acknowledgement/index";
 
 export default () => {
-  const [activePage, setActivePage] = React.useState(2);
+  const [activePage, setActivePage] = React.useState(0);
 
   const isActive = (pageName) => pageName === tapsName[activePage];
   return (
@@ -26,18 +23,11 @@ export default () => {
         />
       </div>
       <div className="row">
-        <Tap isActive={isActive(tapsName[0])}>
-          <GeneralPage />
-        </Tap>
-        <Tap isActive={isActive(tapsName[1])}>
-          <DetailedItemsPage />
-        </Tap>
-        <Tap isActive={isActive(tapsName[2])}>
-          <Acknoeledgement />
-        </Tap>
-        <Tap isActive={isActive(tapsName[3])}>
-          <h1>Page 4</h1>
-        </Tap>
+        {tapComponent.map((TapComponent, i) => (
+          <Tap isActive={isActive(tapsName[i])}>
+            <TapComponent />
+          </Tap>
+        ))}
       </div>
       <div className="row">
         <div className="ui container">

@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { containsAny } from "../../library";
 import PC, { tapsName } from "./PagesConfiguration";
+import numbersToLetters from "../../components/numbersToLetters";
 
 const PageNav = ({ clForm, activePage, setActivePage }) => {
   const fieldNamesHaveError = Object.keys(
@@ -27,7 +28,11 @@ const PageNav = ({ clForm, activePage, setActivePage }) => {
       </div>
     );
   });
-  return <div className="ui four item menu">{PageNavItems}</div>;
+  return (
+    <div className={`ui ${numbersToLetters[tapsName.length]} item menu`}>
+      {PageNavItems}
+    </div>
+  );
 };
 
 const mapStateToProps = ({ form }) => {

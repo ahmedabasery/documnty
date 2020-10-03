@@ -1,14 +1,17 @@
+import Acknowledgement from "./pages/Acknowledgement";
+import DeatiledItem from "./pages/DetailedItemsPage";
+import GeneralPage from "./pages/GeneralPage";
+
 const checkIfNotProvided = (v, message = "this value is required") => {
   if (!v) return message;
   return false;
 };
 
-export const tapsName = [
-  "General",
-  "Detailed Items",
-  "Acknowledgement",
-  "Page 4",
-];
+/////////the next two arrays must have the same lenght ////////
+export const tapsName = ["General", "Detailed Items", "Acknowledgement"];
+export const tapComponent = [GeneralPage, DeatiledItem, Acknowledgement];
+/////////the prev two arrays must have the same lenght ////////
+
 export default [
   {
     name: "general_delivery_trackNum",
